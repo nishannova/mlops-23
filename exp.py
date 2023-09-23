@@ -21,6 +21,11 @@ param_combinations = [{"gamma": gamma, "c_range": C} for gamma in gamma_ranges f
 
 # 1. Get the dataset
 X, y = read_digits()
+
+print("\n","="*30,"QUIZ QUESTION","="*30,"\n")
+print(f"[INFO] TOTAL NUMBER OF SAMPPLES IN DATASET(TRAIN + TEST + DEV): [{len(y)}]")
+print(f"[INFO] SIZE OF INDIVIDUAL IMAGE: [{X[0].shape[0]} x {X[0].shape[1]}] Pixels")
+print("\n","="*30,"END OF QUIZ QUESTION","="*30,"\n")
 c = 0
 for test_size in [0.1, 0.2, 0.3]:
     for dev_size in [0.1, 0.2, 0.3]:

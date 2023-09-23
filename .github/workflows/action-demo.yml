@@ -45,6 +45,7 @@ jobs:
           echo "🔎 Branch: ${{ github.ref }}"
           echo "📂 Repository: ${{ github.repository }}"
           echo "🐧 Running on: ${{ runner.os }}"
+          echo "THIS STATEMENT IS ADDED FOR THE QUIZ"
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
