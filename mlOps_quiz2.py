@@ -32,11 +32,11 @@ def main():
     X_train, X_test, y_train, y_test = load_data()
 
     prod_model = SVC()
-    prod_parameters = {'kernel': ['linear', 'rbf'], 'C': [1, 10]}
+    prod_parameters = {'kernel': ['rbf'], 'C': [1, 10]}
     print(f"SVC MDOEL AND PARAMETERS SET")
 
     cand_model = DecisionTreeClassifier()
-    cand_parameters = {'criterion': ['gini', 'entropy'], 'max_depth': [None, 10]}
+    cand_parameters = {'criterion': ['gini'], 'max_depth': [None, 10]}
     print(f"DECISION TREE MDOEL AND PARAMETERS SET")
 
     best_prod_model = tune_model(prod_model, prod_parameters, X_train, y_train)
