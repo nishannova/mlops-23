@@ -10,6 +10,7 @@ hand-written digits, from 0-9.
 
 # Author: Gael Varoquaux <gael dot varoquaux at normalesup dot org>
 # License: BSD 3 clause
+import cv2
 
 
 from utils import preprocess_data, read_digits, predict_and_eval, train_test_dev_split, tune_hyper_parameters
