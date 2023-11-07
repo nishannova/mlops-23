@@ -42,5 +42,11 @@ for test_size in [0.1, 0.2, 0.3]:
         test_acc = predict_and_eval(best_model, X_test, y_test)
         print(f"test_acc===> [{test_acc}]")
 
+
 test_acc = predict_and_eval(best_model, X_test, y_test)
 print("\n\nTest accuracy: ", test_acc)
+
+import pickle
+
+with open("best_model.pkl", "wb") as handle:
+    pickle.dump(best_model, handle)
