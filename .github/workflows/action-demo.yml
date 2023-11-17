@@ -63,4 +63,5 @@ jobs:
       - name: Run Experiment
         run: |
           echo "🔥 Running experiment..."
-          python exp.py
+          # python exp_resize.py
+          python mlOps_quiz2.py
