@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 from io import BytesIO
 # Load the model
-model = joblib.load('../best_model.pkl')
+model = joblib.load('/digits/API/best_model.pkl')
 
 app = Flask(__name__)
 

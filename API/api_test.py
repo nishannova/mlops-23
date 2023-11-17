@@ -18,7 +18,7 @@ image1_bytes.seek(0)
 image2_bytes.seek(0)
 
 # Prepare the request
-url = 'http://0.0.0.0:5000/compare_digits'
+url = 'http://ml-ops-asignment-5-app.azurewebsites.net/compare_digits'
 files = {
     'image1': ('image1.png', image1_bytes, 'image/png'),
     'image2': ('image2.png', image2_bytes, 'image/png')
