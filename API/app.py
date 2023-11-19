@@ -4,10 +4,25 @@ from PIL import Image
 import numpy as np
 from io import BytesIO
 # Load the model
-model = joblib.load('/digits/API/best_model.pkl')
+# model = joblib.load('/digits/API/best_model.pkl')
+model = joblib.load('best_model.pkl')
 
 app = Flask(__name__)
 
+
+@app.route('/predict_digit', methods=['POST'])
+def predict_digit():
+    if 'image' not in request.files:
+        return jsonify(error='Please provide an image.'), 400
+
+    image_bytes = request.files['image'].read()
+    image = Image.open(BytesIO(image_bytes)).convert('L')
+    image = image.resize((8, 8), Image.LANCZOS)
+    
+    image_arr = np.array(image).reshape(1, -1)
+    pred = model.predict(image_arr)
+
+    return jsonify(predicted_digit=int(pred[0]))
 
 
 @app.route('/compare_digits', methods=['POST'])
