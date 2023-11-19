@@ -4,3 +4,4 @@ scikit-image==0.19.3
 PyYAML==6.0.1
 opencv-python
 pandas
+pytest
