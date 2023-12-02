@@ -46,29 +46,7 @@ def get_image_bytes(image):
 #         assert response.get_json()['predicted_digit'] == digit
 #         print(f"----[DEBUG] ASSERT SUCCESS FOR DIGIT: {digit}")
 
-def test_post_predict_model():
-    digits = load_digits()
-    X, y = digits.images, digits.target
 
-    # Choose an index for testing
-    index = 100  # Replace with your chosen index
-
-    image_bytes = get_image_bytes(X[index])
-    original_digit = y[index]
-
-    model_types = ['svm', 'lr', 'tree']
-
-    for model_type in model_types:
-        response = app.test_client().post(
-            f'/predict/{model_type}', 
-            data={'image': (BytesIO(image_bytes.getvalue()), 'image.png')},
-            content_type='multipart/form-data'
-        )
-
-        assert response.status_code == 200
-        predicted_digit = response.get_json()['predicted_digit']
-        print(f"Response for {model_type} model: {predicted_digit}")
-        print(f"WHICH WAS ORIGINALLY: {original_digit}")
 
 
 LR_MODEL_DIR = "../q2_models"
@@ -94,3 +72,30 @@ def test_solver_name_in_filename():
         model_solver = model.get_params()['solver']
         print(f"[DEBUG]: ACTUAL SOLVER: {model_solver}")
         assert filename_solver == model_solver, f"Solver name in filename ({filename_solver}) does not match the model's solver ({model_solver})"
+
+
+def test_post_predict_model():
+    print(f"[DEBUG] PROCESSING QUESTION [4]")
+    digits = load_digits()
+    X, y = digits.images, digits.target
+
+    # Choose an index for testing
+    index = 100  # Replace with your chosen index
+
+    image_bytes = get_image_bytes(X[index])
+    original_digit = y[index]
+
+    model_types = ['svm', 'lr', 'tree']
+
+    for model_type in model_types:
+        response = app.test_client().post(
+            f'/predict/{model_type}', 
+            data={'image': (BytesIO(image_bytes.getvalue()), 'image.png')},
+            content_type='multipart/form-data'
+        )
+        print(f"[DEBUG] URL IN USE----> [{'/predict/{model_type}'}]")
+
+        assert response.status_code == 200
+        predicted_digit = response.get_json()['predicted_digit']
+        print(f"Response for {model_type} model: {predicted_digit}")
+        print(f"WHICH WAS ORIGINALLY: {original_digit}")
