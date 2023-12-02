@@ -1,0 +1,6 @@
+FROM dependency-image:latest
+COPY . /app
+COPY q2_models /app/q2_models
+COPY saved_model /app/saved_model
+WORKDIR /app/API
+CMD ["pytest"]

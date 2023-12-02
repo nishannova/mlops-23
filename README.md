@@ -54,3 +54,16 @@ Meaning of failure:
 feature
 - vary model hyper parameters
 - 
+
+FINAL DOCKER COMMANDS:
+
+- TO BUILD THE DependencyDocker
+-- `docker build -f DependencyDockerfile -t dependency-image .`
+
+- TO BUILD THE FINAL DOCKER
+-- `docker build -f FinalDockerfile -t dependency-image .`
+
+- TO EXECUTE FINAL DOCKER
+-- `docker run final-image`
+
+

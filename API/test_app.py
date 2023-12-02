@@ -51,11 +51,6 @@ def get_image_bytes(image):
 
 LR_MODEL_DIR = "../q2_models"
 
-# def test_model_type():
-#     model_filename = '<rollno>_lr_<solver_name>.joblib'  # Replace with actual filename
-#     model = joblib.load(model_filename)
-#     assert isinstance(model, LogisticRegression), "Loaded model is not a Logistic Regression model"
-
 def test_solver_name_in_filename():
     model_filenames = [
         "m22aie208_lr_lbfgs.joblib",
