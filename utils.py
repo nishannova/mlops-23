@@ -1,8 +1,16 @@
 from sklearn.model_selection import train_test_split
 from sklearn import svm, datasets, metrics
 # we will put all utils here
+from sklearn.preprocessing import Normalizer
 
-
+def preprocess_data(data):
+    n_samples = len(data)
+    data = data.reshape((n_samples, -1))
+    normalizer = Normalizer(norm='l2')
+    print(f"[Q1]: NORMALIZATION APPLIED")
+    data_normalized = normalizer.fit_transform(data)
+    
+    return data_normalized
 
 def read_digits():
     digits = datasets.load_digits()
@@ -10,11 +18,11 @@ def read_digits():
     y = digits.target
     return X, y 
 
-def preprocess_data(data):
-    # flatten the images
-    n_samples = len(data)
-    data = data.reshape((n_samples, -1))
-    return data
+# def preprocess_data(data):
+#     # flatten the images
+#     n_samples = len(data)
+#     data = data.reshape((n_samples, -1))
+#     return data
 
 # Split data into 50% train and 50% test subsets
 def split_data(x, y, test_size, random_state=1):

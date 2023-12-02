@@ -11,9 +11,14 @@ hand-written digits, from 0-9.
 # Author: Gael Varoquaux <gael dot varoquaux at normalesup dot org>
 # License: BSD 3 clause
 import cv2
-
+import joblib
+import os
 
 from utils import preprocess_data, read_digits, predict_and_eval, train_test_dev_split, tune_hyper_parameters
+
+def save_model(model, filename):
+    joblib.dump(model, filename)
+
 gamma_ranges = [0.001, 0.01, 0.1, 1, 10, 100]
 
 C_ranges = [0.1, 1, 2, 5, 10]
@@ -23,10 +28,10 @@ param_combinations = [{"gamma": gamma, "c_range": C} for gamma in gamma_ranges f
 # 1. Get the dataset
 X, y = read_digits()
 
-print("\n","="*30,"QUIZ QUESTION","="*30,"\n")
+# print("\n","="*30,"QUIZ QUESTION","="*30,"\n")
 print(f"[INFO] TOTAL NUMBER OF SAMPPLES IN DATASET(TRAIN + TEST + DEV): [{len(y)}]")
 print(f"[INFO] SIZE OF INDIVIDUAL IMAGE: [{X[0].shape[0]} x {X[0].shape[1]}] Pixels")
-print("\n","="*30,"END OF QUIZ QUESTION","="*30,"\n")
+# print("\n","="*30,"END OF QUIZ QUESTION","="*30,"\n")
 c = 0
 for test_size in [0.1, 0.2, 0.3]:
     for dev_size in [0.1, 0.2, 0.3]:
@@ -48,5 +53,7 @@ print("\n\nTest accuracy: ", test_acc)
 
 import pickle
 
-with open("best_model.pkl", "wb") as handle:
-    pickle.dump(best_model, handle)
+# with open("best_model.pkl", "wb") as handle:
+#     pickle.dump(best_model, handle)
+filename = os.path.join("saved_model", "svm_model.joblib")
+save_model(best_model, filename)
