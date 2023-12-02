@@ -84,9 +84,13 @@ jobs:
       #     echo "🔥 Running experiment..."
       #     # python exp_resize.py
       #     python mlOps_quiz2.py
+      - name: Run Tests
+        run: |
+          echo "🔍 NORMALIZATION AND TRAINING WiTH LR SOLVERS..."
+          python logistic_regression_experiment.py
 
       - name: Run Tests
         run: |
-          echo "🔍 Running tests..."
+          echo "🔍 ANSWERS OF [Q3]"
           cd API
           pytest -s
