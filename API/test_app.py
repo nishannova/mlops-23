@@ -93,7 +93,7 @@ def test_post_predict_model():
             data={'image': (BytesIO(image_bytes.getvalue()), 'image.png')},
             content_type='multipart/form-data'
         )
-        print(f"[DEBUG] URL IN USE----> [{'/predict/{model_type}'}]")
+        print(f"[DEBUG] URL IN USE----> [{f'/predict/{model_type}'}]")
 
         assert response.status_code == 200
         predicted_digit = response.get_json()['predicted_digit']
